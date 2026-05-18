@@ -190,6 +190,12 @@ class MainActivity : AppCompatActivity() {
                     it.setSurfaceProvider(viewBinding.viewFinder.surfaceProvider)
                 }
 
+            val recorder = Recorder.Builder()
+                .setQualitySelector(QualitySelector.from(Quality.HIGHEST))
+                .build()
+            videoCapture = VideoCapture.withOutput(recorder)
+
+
             imageCapture = ImageCapture.Builder()
                 .build()
 
@@ -209,8 +215,8 @@ class MainActivity : AppCompatActivity() {
                 cameraProvider.unbindAll()
 
                 // Bind use cases to camera
-                cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, imageCapture, imageAnalyzer)
+                cameraProvider.bindToLifecycle(this, cameraSelector, preview, videoCapture)
+
 
             } catch(exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
