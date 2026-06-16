@@ -1,12 +1,40 @@
-## 花卉图片分类器：Keras 训练并导出 TFLite
+# 实验5：TensorFlow 模型训练与 LiteRT 模型转换
 
-TensorFlow Lite Model Maker由于依赖库与新版本的Python不兼容的问题，我们将方案转为用 TensorFlow/Keras 训练一个花卉图片分类模型，并把训练好的模型转换为 TensorFlow Lite 的 `.tflite` 文件。
+## 一、实验目的
 
-它不依赖 `tflite-model-maker`，因此可以避开 `scann`、旧版 TensorFlow、旧版 Python 之间常见的安装冲突。整体流程是： 下载 /读取图片数据集 -> 构建 Keras 模型 -> 训练与评估 -> 保存 `.keras` 模型 -> 转换并导出 `.tflite` 模型 -> 简单测试 TFLite 推理结果。
+-   了解机器学习的基本概念和工作流程。
+-   掌握 TensorFlow 框架的基础用法，理解 Tensor（张量）和 Flow（流）的核心思想。
+-   学习使用 TensorFlow/Keras 构建图像分类模型，并完成训练与评估。
+-   掌握将训练好的 TensorFlow 模型转换为 LiteRT 格式的方法。
+-   使用实验四的 Android 应用验证转换后的模型效果。
+-   将完整的训练代码（Jupyter Notebook）上传至 GitHub 并撰写详细文档。
+
+## 二、实验环境
+
+### 2.1 软件环境
+
+-   **操作系统**：Windows / macOS / Linux（推荐使用 Ubuntu 或 Colab）
+-   **开发工具**：Jupyter Notebook / Google Colab
+-   **Python 版本**：3.8 ~ 3.10（注意与 TensorFlow 版本兼容）
+-   **深度学习框架**：TensorFlow 2.x
+
+### 2.2 依赖库
+
+```bash
+
+pip install tensorflow\==2.13.0
+pip install numpy matplotlib pillow
+```
+
+### 2.3 实验数据
+
+-   **数据集**：花卉数据集（包含雏菊、向日葵、玫瑰、郁金香、蒲公英等类别）
+-   可使用 TensorFlow 自带的花卉数据集或自定义数据集
+
+## 三、实验内容与步骤
 
 ### 1\. 安装依赖
 如果当前 Jupyter kernel 里还没有安装 TensorFlow，请先行安装。可以使用Anaconda创建一个新的环境进行安装。  
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/2e35f145d9df424884622e18b668a677.png#pic_center)
 
 建议使用 Python 3.10 或 3.11或更高版本。这个版本只需要 TensorFlow，不需要安装 `tflite-model-maker`。
 
@@ -309,3 +337,36 @@ smoke_test_tflite(tflite_path, test_ds, class_names)
 
 将实验4中的模型替换成训练后的模型并运行
 ![在这里插入图片描述](./p1.png)
+
+
+## 四、实验总结
+
+通过本次实验，我掌握了以下内容：
+
+1.  **机器学习基础**  
+    理解了机器学习的基本流程（数据准备 → 模型构建 → 训练 → 评估 → 部署）。
+2.  **TensorFlow 框架**  
+    学会了 Tensor 和 Flow 的核心概念，掌握使用 Keras API 快速构建图像分类模型。
+3.  **迁移学习应用**  
+    使用 MobileNetV2 预训练模型显著减少了训练时间和数据量要求。
+4.  **模型转换**  
+    掌握了 TensorFlow Lite Converter 的使用，将标准模型转换为适用于移动端的 LiteRT 格式，并应用量化技术优化模型大小。
+5.  **端到端验证**  
+    将训练的模型集成到 Android 应用中，验证了模型在实际移动设备上的效果。
+6.  **版本管理**  
+    将完整的 Jupyter Notebook 训练代码上传至 GitHub，并撰写了规范的 README 文档。
+
+TensorFlow 模型训练与 LiteRT 转换是移动端 AI 应用开发的核心技能，本次实验为后续开发更复杂的计算机视觉应用（如目标检测、语义分割）打下了坚实基础。
+
+## 五、参考资料
+
+-   [TensorFlow 官方文档](https://www.tensorflow.org/)
+-   [TensorFlow Lite 文档](https://www.tensorflow.org/lite)
+-   [Keras API 参考](https://keras.io/api/)
+-   [MobileNetV2 论文](https://arxiv.org/abs/1801.04381)
+-   [Google Colab 教程](https://colab.research.google.com/)
+
+## 六、附件与代码仓库
+
+-   本实验完整 Jupyter Notebook 已上传至 GitHub：  
+  [https://github.com/bukuujun/rk3/tree/master/sy5](https://github.com/bukuujun/rk3/tree/master/sy5)

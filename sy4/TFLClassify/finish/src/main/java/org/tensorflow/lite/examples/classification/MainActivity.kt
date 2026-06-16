@@ -129,7 +129,6 @@ class MainActivity : AppCompatActivity() {
         permissions: Array<String>,
         grantResults: IntArray
     ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
                 startCamera()
@@ -218,7 +217,7 @@ class MainActivity : AppCompatActivity() {
             // TODO 6. Optional GPU acceleration
             val compatList = CompatibilityList()
 
-            val options: Model.Options = if(compatList.isDelegateSupportedOnThisDevice) {
+            val options = if(compatList.isDelegateSupportedOnThisDevice) {
                 Log.d(TAG, "This device is GPU Compatible ")
                 Model.Options.Builder().setDevice(Model.Device.GPU).build()
             } else {
