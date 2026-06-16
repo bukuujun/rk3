@@ -336,7 +336,7 @@ smoke_test_tflite(tflite_path, test_ds, class_names)
 ```
 
 将实验4中的模型替换成训练后的模型并运行
-![在这里插入图片描述](./p1.png)
+![在这里插入图片描述](./pic/p1.jpg)
 
 
 ## 四、实验总结
